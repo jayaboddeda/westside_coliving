@@ -6,181 +6,584 @@
   <title>Contact & Book a Visit – Westside Coliving Madhapur, Hyderabad</title>
   <meta name="description" content="Contact Westside Coliving in Madhapur, Hyderabad. Schedule a property visit, enquire about rooms, or reach us on WhatsApp. Call 905-943-4949 or email westside.coliving@gmail.com." />
   <link rel="canonical" href="https://westsidecoliving.com/contact.html" />
-  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            /* Brand palette: navy + golden yellow from the Westside logo */
+            ink:   { DEFAULT: '#1a2a63', soft: '#232f70', muted: '#565d7a' },
+            cream: { DEFAULT: '#f3f4f8', deep: '#e6e8f1' },
+            gold:  { DEFAULT: '#f4b51f', light: '#f8ca56', deep: '#8a5f08' }
+          },
+          fontFamily: {
+            display: ['Fraunces', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .font-display { font-family: 'Fraunces', Georgia, serif; }
+
+    /* ── Icon system (inline SVG sprite) ── */
+    svg.ic  { stroke: currentColor; stroke-width: 1.7; fill: none;
+              stroke-linecap: round; stroke-linejoin: round; }
+    svg.ic-fill { stroke: none; fill: currentColor; }
+
+    /* ── Image placeholders: swap the .ph block for an <img> later ── */
+    .ph {
+      position: relative; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: .6rem;
+      background: linear-gradient(135deg,#e7e9f2 0%,#f3f4f8 52%,#e9ebf3 100%);
+      box-shadow: inset 0 0 0 1px rgba(26,42,99,.07);
+    }
+    .ph-dark {
+      background: linear-gradient(135deg,#27337a 0%,#1a2a63 55%,#15204f 100%);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.08);
+    }
+
+    /* Grain texture overlay */
+    .grain::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+      opacity: .035;
+    }
+
+    /* Scroll reveal */
+    .reveal { opacity: 0; transform: translateY(34px); transition: opacity .9s cubic-bezier(.16,.84,.44,1), transform .9s cubic-bezier(.16,.84,.44,1); }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal.d1 { transition-delay: .08s; }
+    .reveal.d2 { transition-delay: .16s; }
+    .reveal.d3 { transition-delay: .24s; }
+    .reveal.d4 { transition-delay: .32s; }
+
+    /* Marquee */
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .marquee-track { animation: marquee 36s linear infinite; }
+    .marquee:hover .marquee-track { animation-play-state: paused; }
+
+    /* Floating blobs */
+    @keyframes float { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-26px) scale(1.05); } }
+    .blob { animation: float 11s ease-in-out infinite; }
+
+    /* Nav */
+    #navbar { transition: background-color .35s ease, box-shadow .35s ease, border-color .35s ease; }
+    .underline-grow { background-image: linear-gradient(currentColor,currentColor); background-size: 0% 1.5px; background-repeat: no-repeat; background-position: 0 100%; transition: background-size .35s ease; }
+    .underline-grow:hover { background-size: 100% 1.5px; }
+
+    /* ── Mobile off-canvas menu ── */
+    #navBackdrop { transition: opacity .3s ease, visibility .3s ease; }
+    .nav-open #navBackdrop { opacity: 1; visibility: visible; }
+    #mobileMenu { transition: transform .4s cubic-bezier(.16,.84,.44,1); }
+    .nav-open #mobileMenu { transform: translateX(0); }
+    body.menu-lock { overflow: hidden; }
+    #hamburger .hb-line { transition: transform .3s ease, opacity .2s ease; }
+    .nav-open #hamburger .hb-line:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-open #hamburger .hb-line:nth-child(2) { opacity: 0; }
+    .nav-open #hamburger .hb-line:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    ::selection { background: #1a2a63; color: #f8ca56; }
+    .pulse-dot { box-shadow: 0 0 0 0 rgba(244,181,31,.7); animation: pdot 2.4s infinite; }
+    @keyframes pdot { 70% { box-shadow: 0 0 0 12px rgba(244,181,31,0); } 100% { box-shadow: 0 0 0 0 rgba(244,181,31,0); } }
+    .live-badge { animation: livep 2s infinite; }
+    @keyframes livep { 0%,100% { opacity: 1; } 50% { opacity: .55; } }
+
+    /* ── Contact form interactivity ── */
+    .field { position: relative; }
+    .field-input {
+      transition: border-color .25s ease, background-color .25s ease, box-shadow .25s ease;
+    }
+    .field-input::placeholder { color: rgba(86,93,122,.5); }
+    .field-input:focus { outline: none; }
+    .field:focus-within .field-icon { color: #8a5f08; }
+    select.field-input {
+      -webkit-appearance: none; appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='%23565d7a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='5 8 10 13 15 8'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right .9rem center;
+    }
+    /* Channel cards */
+    .channel-card { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+    .channel-card:hover { transform: translateY(-4px); }
+    /* Toast */
+    #formToast { transition: opacity .4s ease, transform .4s ease; }
+    #formToast.hide { opacity: 0; transform: translateY(12px); pointer-events: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .blob, .marquee-track, .pulse-dot, .live-badge { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
 </head>
-<body>
 
-  <nav class="navbar scrolled" id="navbar">
-    <div class="nav-inner">
-      <a href="index.html" class="nav-logo">
-        <div class="nav-logo-icon">W</div>
-        <div class="nav-logo-text"><span>WESTSIDE</span><span>Coliving</span></div>
-      </a>
-      <ul class="nav-menu">
-        <li><a href="index.html" class="nav-link">Home</a></li>
-        <li><a href="about.html" class="nav-link">About</a></li>
-        <li><a href="rooms.html" class="nav-link">Rooms & Pricing</a></li>
-        <li><a href="amenities.html" class="nav-link">Amenities</a></li>
-        <li><a href="food-menu.html" class="nav-link">Food Menu</a></li>
-        <li><a href="gallery.html" class="nav-link">Gallery</a></li>
-        <li><a href="faq.html" class="nav-link">FAQ</a></li>
-        <li><a href="contact.html" class="nav-link nav-cta active">Enquire Now</a></li>
-      </ul>
-      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
-    </div>
-    <div class="mobile-menu" id="mobileMenu">
-      <a href="index.html" class="nav-link">Home</a><a href="about.html" class="nav-link">About</a><a href="rooms.html" class="nav-link">Rooms & Pricing</a><a href="amenities.html" class="nav-link">Amenities</a><a href="food-menu.html" class="nav-link">Food Menu</a><a href="gallery.html" class="nav-link">Gallery</a><a href="faq.html" class="nav-link">FAQ</a><a href="contact.html" class="nav-link nav-cta">Enquire Now</a>
-    </div>
-  </nav>
+<body class="bg-cream text-ink antialiased">
 
-  <section class="page-hero">
-    <div class="page-hero-inner">
-      <div class="breadcrumb"><a href="index.html">Home</a><span>›</span><strong>Contact</strong></div>
-      <span class="section-label">Get In Touch</span>
-      <h1>Book a Visit or Enquire</h1>
-      <p>Fill in the form, call us or send a WhatsApp message. Our team typically responds within a few hours.</p>
+  <!-- ========== SVG ICON SPRITE (hidden) ========== -->
+  <svg width="0" height="0" class="absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+      <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3v3"/><path d="M12 18v3"/><path d="m5.6 5.6 2.1 2.1"/><path d="m16.3 16.3 2.1 2.1"/><path d="M3 12h3"/><path d="M18 12h3"/><path d="m5.6 18.4 2.1-2.1"/><path d="m16.3 7.7 2.1-2.1"/><circle cx="12" cy="12" r="3.2"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><path d="M13.8 16.6a1 1 0 0 0 1.2-.3l.4-.5A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.5.4a1 1 0 0 0-.3 1.2 14 14 0 0 0 6.4 6.4z"/></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol>
+      <symbol id="i-calendar" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></symbol>
+      <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 2 3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1Z"/></symbol>
+      <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9 21v-6h6v6"/></symbol>
+      <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></symbol>
+      <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0"/></symbol>
+      <symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></symbol>
+      <symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="19" r="3"/><circle cx="18" cy="5" r="3"/><path d="M9 19h6a4 4 0 0 0 4-4V8"/><path d="M15 5H9a4 4 0 0 0-4 4v7"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></symbol>
+      <symbol id="i-message" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol>
+      <symbol id="i-instagram" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17.4" cy="6.6" r="1.1"/></symbol>
+      <symbol id="i-facebook" viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></symbol>
+      <symbol id="i-youtube" viewBox="0 0 24 24"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.3 5 12 5 12 5s-6.3 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.7 2 12 2 12s0 3.3.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.7 19 12 19 12 19s6.3 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8C22 15.3 22 12 22 12s0-3.3-.4-4.8ZM10 15.2V8.8l5.2 3.2Z"/></symbol>
+      <symbol id="i-whatsapp" viewBox="0 0 32 32"><path d="M16 0C7.164 0 0 7.164 0 16c0 2.823.737 5.474 2.027 7.773L0 32l8.438-2.012A15.938 15.938 0 0016 32c8.836 0 16-7.164 16-16S24.836 0 16 0zm0 29.25a13.21 13.21 0 01-6.74-1.848l-.484-.288-5.008 1.195 1.232-4.872-.315-.5A13.203 13.203 0 012.75 16C2.75 8.682 8.682 2.75 16 2.75S29.25 8.682 29.25 16 23.318 29.25 16 29.25zm7.234-9.898c-.396-.199-2.344-1.156-2.707-1.289-.363-.132-.626-.198-.89.2-.263.396-1.022 1.289-1.254 1.553-.23.264-.462.297-.858.099-.396-.198-1.672-.616-3.185-1.965-1.177-1.05-1.972-2.348-2.203-2.744-.23-.396-.025-.61.173-.807.178-.177.396-.462.594-.693.198-.231.264-.396.396-.66.132-.264.066-.495-.033-.693-.1-.198-.89-2.145-1.22-2.937-.32-.772-.648-.667-.89-.68l-.758-.013c-.264 0-.693.099-1.056.495-.363.396-1.387 1.355-1.387 3.305 0 1.95 1.42 3.834 1.618 4.098.198.264 2.796 4.27 6.772 5.987.946.408 1.684.652 2.26.835.95.302 1.814.259 2.498.157.762-.114 2.344-.958 2.674-1.883.33-.925.33-1.717.231-1.883-.099-.165-.363-.264-.759-.462z"/></symbol>
+    </defs>
+  </svg>
+
+  <!-- ========== SHARED HEADER (markup in js/header.js) ========== -->
+  <div id="site-header"></div>
+
+  <!-- ========== PAGE HERO ========== -->
+  <section class="relative overflow-hidden grain bg-ink text-cream pt-[104px] lg:pt-[116px]">
+    <div class="blob absolute -top-24 left-1/2 -translate-x-1/2 w-[620px] h-[420px] rounded-full bg-gold/15 blur-3xl"></div>
+    <div class="blob absolute -bottom-32 -right-20 w-[420px] h-[420px] rounded-full bg-white/5 blur-3xl" style="animation-delay:-5s"></div>
+
+    <div class="relative max-w-4xl mx-auto px-6 py-16 sm:py-24 text-center">
+      <!-- breadcrumb -->
+      <nav class="reveal flex items-center justify-center gap-2 text-[13px] text-cream/55">
+        <a href="index.html" class="hover:text-gold-light transition-colors">Home</a>
+        <svg class="ic w-3.5 h-3.5 text-cream/30"><use href="#i-arrow"/></svg>
+        <span class="text-gold-light font-semibold">Contact</span>
+      </nav>
+
+      <span class="reveal d1 mt-6 inline-flex items-center gap-3 text-[12px] font-bold uppercase tracking-[0.22em] text-gold-light">
+        <span class="w-8 h-px bg-gold-light"></span> Get In Touch <span class="w-8 h-px bg-gold-light"></span>
+      </span>
+
+      <h1 class="reveal d1 font-display mt-5 text-[2.1rem] sm:text-6xl font-semibold tracking-[-0.02em] leading-[1.1]">
+        Book a Visit or <span class="italic text-gold-light">Enquire</span>
+      </h1>
+
+      <p class="reveal d2 mt-5 mx-auto max-w-xl text-[15px] sm:text-lg leading-relaxed text-cream/70">
+        Fill in the form, call us or send a WhatsApp message. Our team typically responds within a
+        few hours.
+      </p>
+
+      <div class="reveal d3 mt-8 flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
+        <a href="#enquiry" class="inline-flex w-full sm:w-auto justify-center items-center gap-2 rounded-full bg-gold text-ink px-7 py-3.5 font-semibold hover:bg-gold-light transition-colors shadow-xl shadow-black/30">
+          <svg class="ic w-5 h-5"><use href="#i-send"/></svg> Send an Enquiry
+        </a>
+        <a href="https://wa.me/919059434949?text=Hi%2C%20I%27m%20interested%20in%20booking%20a%20room%20at%20Westside%20Coliving%2C%20Madhapur." target="_blank" rel="noopener noreferrer" class="inline-flex w-full sm:w-auto justify-center items-center gap-2 rounded-full border border-cream/30 px-7 py-3.5 font-semibold hover:bg-cream hover:text-ink transition-colors">
+          <svg class="ic w-5 h-5"><use href="#i-whatsapp"/></svg> WhatsApp Us
+        </a>
+      </div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="container">
-      <div class="contact-grid">
+  <!-- ========== CONTACT — FORM + INFO ========== -->
+  <section id="enquiry" class="relative py-16 sm:py-24 bg-cream-deep grain overflow-hidden scroll-mt-24">
+    <div class="absolute -top-24 right-0 w-[420px] h-[420px] rounded-full bg-gold/15 blur-3xl"></div>
 
-        <!-- Contact Form -->
-        <div class="contact-form-wrap fade-up">
-          <h3 style="margin-bottom:1.75rem;color:var(--text-dark);">Send Us a Message</h3>
-          <form id="contactForm" action="mailto:westside.coliving@gmail.com" method="post" enctype="text/plain">
-            <div class="form-row">
-              <div class="form-group">
-                <label for="name">Full Name *</label>
-                <input type="text" id="name" name="name" placeholder="Your full name" required />
+    <div class="relative max-w-7xl mx-auto px-6">
+      <div class="grid lg:grid-cols-[1.1fr_0.9fr] gap-7 lg:gap-9 items-start">
+
+        <!-- ===== Contact Form ===== -->
+        <div class="reveal relative rounded-[2rem] bg-white border border-ink/8 shadow-xl shadow-ink/5 overflow-hidden">
+          <div class="h-1.5 w-full bg-gradient-to-r from-gold via-gold-light to-gold"></div>
+          <div class="p-7 sm:p-9">
+            <span class="inline-flex items-center gap-3 text-[12px] font-bold uppercase tracking-[0.22em] text-gold-deep">
+              <span class="w-8 h-px bg-gold-deep"></span> Enquiry Form
+            </span>
+            <h2 class="font-display mt-4 text-[1.6rem] sm:text-3xl font-semibold tracking-[-0.02em]">
+              Send Us a <span class="italic text-gold-deep">Message</span>
+            </h2>
+            <p class="mt-2 text-[14.5px] text-ink-muted">
+              Tell us a little about what you're looking for — we'll get back to you shortly.
+            </p>
+
+            <form id="contactForm" action="mailto:westside.coliving@gmail.com" method="post" enctype="text/plain" class="mt-7 flex flex-col gap-5">
+              <!-- Name + Phone -->
+              <div class="grid sm:grid-cols-2 gap-5">
+                <div class="field">
+                  <label for="name" class="block text-[13px] font-semibold mb-1.5">Full Name <span class="text-gold-deep">*</span></label>
+                  <svg class="field-icon ic w-5 h-5 text-ink-muted absolute left-3.5 top-[2.45rem]"><use href="#i-user"/></svg>
+                  <input type="text" id="name" name="name" placeholder="Your full name" required
+                    class="field-input w-full rounded-xl border border-ink/15 bg-cream/40 pl-11 pr-4 py-3.5 text-[15px] focus:border-gold focus:bg-white focus:ring-4 focus:ring-gold/15" />
+                </div>
+                <div class="field">
+                  <label for="phone" class="block text-[13px] font-semibold mb-1.5">Phone Number <span class="text-gold-deep">*</span></label>
+                  <svg class="field-icon ic w-5 h-5 text-ink-muted absolute left-3.5 top-[2.45rem]"><use href="#i-phone"/></svg>
+                  <input type="tel" id="phone" name="phone" placeholder="+91 XXXXX XXXXX" required
+                    class="field-input w-full rounded-xl border border-ink/15 bg-cream/40 pl-11 pr-4 py-3.5 text-[15px] focus:border-gold focus:bg-white focus:ring-4 focus:ring-gold/15" />
+                </div>
               </div>
-              <div class="form-group">
-                <label for="phone">Phone Number *</label>
-                <input type="tel" id="phone" name="phone" placeholder="+91 XXXXX XXXXX" required />
+
+              <!-- Email -->
+              <div class="field">
+                <label for="email" class="block text-[13px] font-semibold mb-1.5">Email Address</label>
+                <svg class="field-icon ic w-5 h-5 text-ink-muted absolute left-3.5 top-[2.45rem]"><use href="#i-mail"/></svg>
+                <input type="email" id="email" name="email" placeholder="your@email.com"
+                  class="field-input w-full rounded-xl border border-ink/15 bg-cream/40 pl-11 pr-4 py-3.5 text-[15px] focus:border-gold focus:bg-white focus:ring-4 focus:ring-gold/15" />
               </div>
-            </div>
-            <div class="form-group">
-              <label for="email">Email Address</label>
-              <input type="email" id="email" name="email" placeholder="your@email.com" />
-            </div>
-            <div class="form-group">
-              <label for="roomType">Room Type You're Interested In *</label>
-              <select id="roomType" name="roomType" required>
-                <option value="">Select room type...</option>
-                <option value="single">Single / Private Room (₹30,000/month)</option>
-                <option value="twin">Twin Sharing (₹15,000–₹16,000/person)</option>
-                <option value="triple">Triple Sharing (₹13,000/person)</option>
-                <option value="not-sure">Not Sure Yet</option>
-              </select>
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="moveIn">Expected Move-In Date</label>
-                <input type="date" id="moveIn" name="moveIn" />
-              </div>
-              <div class="form-group">
-                <label for="gender">Gender</label>
-                <select id="gender" name="gender">
-                  <option value="">Select...</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                  <option value="couple">Couple</option>
+
+              <!-- Room type -->
+              <div class="field">
+                <label for="roomType" class="block text-[13px] font-semibold mb-1.5">Room Type You're Interested In <span class="text-gold-deep">*</span></label>
+                <select id="roomType" name="roomType" required
+                  class="field-input w-full rounded-xl border border-ink/15 bg-cream/40 px-4 py-3.5 text-[15px] focus:border-gold focus:bg-white focus:ring-4 focus:ring-gold/15">
+                  <option value="">Select room type...</option>
+                  <option value="single">Single / Private Room (₹30,000/month)</option>
+                  <option value="twin">Twin Sharing (₹15,000–₹16,000/person)</option>
+                  <option value="triple">Triple Sharing (₹13,000/person)</option>
+                  <option value="not-sure">Not Sure Yet</option>
                 </select>
               </div>
-            </div>
-            <div class="form-group">
-              <label for="message">Message / Questions</label>
-              <textarea id="message" name="message" placeholder="Any questions or special requirements? Tell us more about what you're looking for..."></textarea>
-            </div>
-            <div style="display:flex;gap:1rem;flex-wrap:wrap;">
-              <button type="submit" class="btn btn-primary btn-lg" style="flex:1;justify-content:center;">📩 Send Enquiry</button>
-              <a href="https://wa.me/919059434949?text=Hi%2C%20I%27m%20interested%20in%20booking%20a%20room%20at%20Westside%20Coliving%2C%20Madhapur." class="btn btn-secondary btn-lg" target="_blank" style="flex:1;justify-content:center;">💬 WhatsApp Instead</a>
-            </div>
-          </form>
+
+              <!-- Move-in + Gender -->
+              <div class="grid sm:grid-cols-2 gap-5">
+                <div class="field">
+                  <label for="moveIn" class="block text-[13px] font-semibold mb-1.5">Expected Move-In Date</label>
+                  <input type="date" id="moveIn" name="moveIn"
+                    class="field-input w-full rounded-xl border border-ink/15 bg-cream/40 px-4 py-3.5 text-[15px] focus:border-gold focus:bg-white focus:ring-4 focus:ring-gold/15" />
+                </div>
+                <div class="field">
+                  <label for="gender" class="block text-[13px] font-semibold mb-1.5">Gender</label>
+                  <select id="gender" name="gender"
+                    class="field-input w-full rounded-xl border border-ink/15 bg-cream/40 px-4 py-3.5 text-[15px] focus:border-gold focus:bg-white focus:ring-4 focus:ring-gold/15">
+                    <option value="">Select...</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="couple">Couple</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Message -->
+              <div class="field">
+                <label for="message" class="block text-[13px] font-semibold mb-1.5">Message / Questions</label>
+                <textarea id="message" name="message" rows="4" placeholder="Any questions or special requirements? Tell us more about what you're looking for..."
+                  class="field-input w-full rounded-xl border border-ink/15 bg-cream/40 px-4 py-3.5 text-[15px] resize-y focus:border-gold focus:bg-white focus:ring-4 focus:ring-gold/15"></textarea>
+              </div>
+
+              <!-- Actions -->
+              <div class="flex flex-col sm:flex-row gap-3 pt-1">
+                <button type="submit"
+                  class="inline-flex flex-1 justify-center items-center gap-2 rounded-full bg-ink text-cream px-6 py-4 font-semibold hover:bg-gold hover:text-ink transition-colors shadow-xl shadow-ink/15">
+                  <svg class="ic w-5 h-5"><use href="#i-send"/></svg> Send Enquiry
+                </button>
+                <a id="waFormBtn" href="https://wa.me/919059434949?text=Hi%2C%20I%27m%20interested%20in%20booking%20a%20room%20at%20Westside%20Coliving%2C%20Madhapur." target="_blank" rel="noopener noreferrer"
+                  class="inline-flex flex-1 justify-center items-center gap-2 rounded-full border border-ink/20 px-6 py-4 font-semibold hover:bg-ink hover:text-cream transition-colors">
+                  <svg class="ic w-5 h-5"><use href="#i-whatsapp"/></svg> WhatsApp Instead
+                </a>
+              </div>
+              <p class="flex items-start gap-2 text-[12.5px] text-ink-muted">
+                <svg class="ic w-4 h-4 text-gold-deep shrink-0 mt-0.5"><use href="#i-info"/></svg>
+                Submitting opens your email app with the enquiry pre-filled. Prefer instant chat? Use WhatsApp.
+              </p>
+            </form>
+          </div>
+
+          <!-- Inline confirmation toast -->
+          <div id="formToast" class="hide absolute bottom-5 left-5 right-5 sm:left-auto sm:max-w-xs flex items-start gap-3 rounded-2xl bg-ink text-cream px-4 py-3.5 shadow-2xl shadow-ink/30">
+            <span class="grid place-items-center w-8 h-8 rounded-full bg-gold text-ink shrink-0"><svg class="ic w-4 h-4"><use href="#i-check"/></svg></span>
+            <span class="text-[13.5px] leading-snug">Opening your email app — your enquiry is on its way. We'll respond soon!</span>
+          </div>
         </div>
 
-        <!-- Contact Info -->
-        <div class="fade-up delay-2">
-          <h3 style="margin-bottom:1.5rem;color:var(--text-dark);">Contact Information</h3>
-          <div class="contact-info-cards">
-            <div class="contact-info-card">
-              <div class="contact-info-icon">📞</div>
-              <div class="contact-info-text">
-                <h5>Phone / WhatsApp</h5>
-                <a href="tel:+919059434949">905-943-4949</a>
-                <a href="tel:+919059324949">905-932-4949</a>
+        <!-- ===== Contact Info ===== -->
+        <div class="reveal d2 flex flex-col gap-5">
+          <span class="inline-flex items-center gap-3 text-[12px] font-bold uppercase tracking-[0.22em] text-gold-deep">
+            <span class="w-8 h-px bg-gold-deep"></span> Contact Information
+          </span>
+
+          <!-- Phone — featured dark card -->
+          <div class="relative rounded-3xl bg-ink text-cream p-6 sm:p-7 overflow-hidden">
+            <div class="absolute -top-12 -right-12 w-40 h-40 rounded-full bg-gold/15 blur-2xl"></div>
+            <div class="relative flex items-center gap-3">
+              <span class="grid place-items-center w-12 h-12 rounded-2xl bg-gold text-ink"><svg class="ic w-6 h-6"><use href="#i-phone"/></svg></span>
+              <div>
+                <h3 class="font-display text-lg font-semibold">Phone / WhatsApp</h3>
+                <p class="text-[12.5px] text-cream/60">Talk to our team directly</p>
               </div>
             </div>
-            <div class="contact-info-card">
-              <div class="contact-info-icon">✉️</div>
-              <div class="contact-info-text">
-                <h5>Email</h5>
-                <a href="mailto:westside.coliving@gmail.com">westside.coliving@gmail.com</a>
-                <p>We respond within 24 hours</p>
-              </div>
+            <div class="relative mt-5 grid grid-cols-2 gap-3">
+              <a href="tel:+919059434949" class="flex flex-col rounded-2xl bg-white/[0.07] border border-white/10 px-4 py-3.5 hover:bg-white/[0.12] transition-colors">
+                <span class="text-[11px] uppercase tracking-wider text-cream/55">Primary</span>
+                <span class="font-display text-lg font-semibold mt-0.5">905-943-4949</span>
+              </a>
+              <a href="tel:+919059324949" class="flex flex-col rounded-2xl bg-white/[0.07] border border-white/10 px-4 py-3.5 hover:bg-white/[0.12] transition-colors">
+                <span class="text-[11px] uppercase tracking-wider text-cream/55">Alternate</span>
+                <span class="font-display text-lg font-semibold mt-0.5">905-932-4949</span>
+              </a>
             </div>
-            <div class="contact-info-card">
-              <div class="contact-info-icon">📍</div>
-              <div class="contact-info-text">
-                <h5>Address</h5>
-                <p>Plot No 990 & 991, Ayyappa Society,<br />Madhapur, Hyderabad,<br />Telangana 500081</p>
-              </div>
-            </div>
-            <div class="contact-info-card">
-              <div class="contact-info-icon">🕐</div>
-              <div class="contact-info-text">
-                <h5>Enquiry Hours</h5>
-                <p>9:00 AM to 9:00 PM, All Days</p>
-                <p>Property visits by appointment</p>
+          </div>
+
+          <!-- Email -->
+          <div class="channel-card rounded-3xl bg-white border border-ink/8 shadow-sm p-6 hover:border-gold/40 hover:shadow-lg hover:shadow-ink/5">
+            <div class="flex items-start gap-4">
+              <span class="grid place-items-center w-12 h-12 rounded-2xl bg-gold/15 text-gold-deep shrink-0"><svg class="ic w-6 h-6"><use href="#i-mail"/></svg></span>
+              <div class="min-w-0">
+                <h3 class="font-display text-lg font-semibold">Email</h3>
+                <a href="mailto:westside.coliving@gmail.com" class="text-[14.5px] text-ink-muted hover:text-gold-deep transition-colors break-all">westside.coliving@gmail.com</a>
+                <p class="mt-1.5 inline-flex items-center gap-1.5 text-[12.5px] font-semibold text-green-700">
+                  <svg class="ic w-3.5 h-3.5"><use href="#i-clock"/></svg> We respond within 24 hours
+                </p>
               </div>
             </div>
           </div>
 
-          <!-- Quick Links -->
-          <div style="margin-top:2rem;padding:1.5rem;background:var(--bg);border-radius:var(--radius);border:1px solid var(--border);">
-            <h5 style="margin-bottom:1rem;color:var(--text-dark);">Quick Actions</h5>
-            <div style="display:flex;flex-direction:column;gap:0.75rem;">
-              <a href="https://wa.me/919059434949?text=Hi%2C%20I%27m%20interested%20in%20booking%20a%20room%20at%20Westside%20Coliving." class="btn btn-primary" target="_blank">💬 Chat on WhatsApp</a>
-              <a href="tel:+919059434949" class="btn btn-secondary">📞 Call Now</a>
-              <a href="https://maps.app.goo.gl/mwXL6YZdzvBgpMeXA" class="btn btn-secondary" target="_blank">🗺️ Get Directions</a>
+          <!-- Address -->
+          <div class="channel-card rounded-3xl bg-white border border-ink/8 shadow-sm p-6 hover:border-gold/40 hover:shadow-lg hover:shadow-ink/5">
+            <div class="flex items-start gap-4">
+              <span class="grid place-items-center w-12 h-12 rounded-2xl bg-gold/15 text-gold-deep shrink-0"><svg class="ic w-6 h-6"><use href="#i-pin"/></svg></span>
+              <div>
+                <h3 class="font-display text-lg font-semibold">Address</h3>
+                <p class="text-[14.5px] text-ink-muted leading-relaxed">Plot No 990 &amp; 991, Ayyappa Society,<br />Madhapur, Hyderabad,<br />Telangana 500081</p>
+                <a href="#location" class="mt-2 inline-flex items-center gap-1.5 text-[13px] font-semibold text-gold-deep hover:gap-2.5 transition-all">
+                  See on map <svg class="ic w-4 h-4"><use href="#i-arrow"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hours -->
+          <div class="channel-card rounded-3xl bg-white border border-ink/8 shadow-sm p-6 hover:border-gold/40 hover:shadow-lg hover:shadow-ink/5">
+            <div class="flex items-start gap-4">
+              <span class="grid place-items-center w-12 h-12 rounded-2xl bg-gold/15 text-gold-deep shrink-0"><svg class="ic w-6 h-6"><use href="#i-clock"/></svg></span>
+              <div>
+                <div class="flex items-center gap-2 flex-wrap">
+                  <h3 class="font-display text-lg font-semibold">Enquiry Hours</h3>
+                  <span id="hoursBadge" class="text-[10px] font-bold uppercase tracking-wider rounded-full px-2.5 py-1"></span>
+                </div>
+                <p class="text-[14.5px] text-ink-muted">9:00 AM to 9:00 PM, All Days</p>
+                <p class="text-[13px] text-ink-muted/80">Property visits by appointment</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Actions -->
+          <div class="rounded-3xl bg-cream border border-ink/10 p-6">
+            <h3 class="font-display text-lg font-semibold flex items-center gap-2.5">
+              <svg class="ic w-5 h-5 text-gold-deep"><use href="#i-spark"/></svg> Quick Actions
+            </h3>
+            <div class="mt-4 flex flex-col gap-3">
+              <a href="https://wa.me/919059434949?text=Hi%2C%20I%27m%20interested%20in%20booking%20a%20room%20at%20Westside%20Coliving." target="_blank" rel="noopener noreferrer"
+                class="inline-flex justify-center items-center gap-2 rounded-full bg-ink text-cream px-5 py-3.5 font-semibold hover:bg-gold hover:text-ink transition-colors">
+                <svg class="ic w-5 h-5"><use href="#i-whatsapp"/></svg> Chat on WhatsApp
+              </a>
+              <a href="tel:+919059434949"
+                class="inline-flex justify-center items-center gap-2 rounded-full border border-ink/20 px-5 py-3.5 font-semibold hover:bg-ink hover:text-cream transition-colors">
+                <svg class="ic w-5 h-5"><use href="#i-phone"/></svg> Call Now
+              </a>
+              <a href="https://maps.app.goo.gl/mwXL6YZdzvBgpMeXA" target="_blank" rel="noopener noreferrer"
+                class="inline-flex justify-center items-center gap-2 rounded-full border border-ink/20 px-5 py-3.5 font-semibold hover:bg-ink hover:text-cream transition-colors">
+                <svg class="ic w-5 h-5"><use href="#i-route"/></svg> Get Directions
+              </a>
             </div>
           </div>
         </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== MAP / LOCATION ========== -->
+  <section id="location" class="relative py-16 sm:py-24 bg-cream scroll-mt-24">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="max-w-2xl reveal">
+        <span class="inline-flex items-center gap-3 text-[12px] font-bold uppercase tracking-[0.22em] text-gold-deep">
+          <span class="w-8 h-px bg-gold-deep"></span> Find Us
+        </span>
+        <h2 class="font-display mt-4 text-[1.75rem] sm:text-5xl font-semibold tracking-[-0.02em] leading-[1.15]">
+          Our <span class="italic text-gold-deep">Location</span>
+        </h2>
+        <p class="mt-4 sm:mt-5 text-[15px] sm:text-lg text-ink-muted">
+          In the heart of Madhapur — minutes from Mindspace &amp; HITEC City. Drop by for a visit by
+          appointment.
+        </p>
       </div>
 
-      <!-- Map -->
-      <div style="margin-top:4rem;" class="fade-up">
-        <h3 style="margin-bottom:1.5rem;text-align:center;">Our Location</h3>
-        <div class="map-container">
+      <div class="mt-10 sm:mt-12 reveal d1 grid lg:grid-cols-[1.6fr_1fr] gap-6 items-stretch">
+        <!-- Map -->
+        <div class="relative rounded-[1.8rem] overflow-hidden shadow-2xl shadow-ink/15 border border-ink/8 min-h-[340px]">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.173!2d78.3774!3d17.4461!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDI2JzQ2LjAiTiA3OMKwMjInMzguNiJF!5e0!3m2!1sen!2sin!4v1"
             allowfullscreen=""
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
-            title="Westside Coliving Location">
-          </iframe>
+            title="Westside Coliving Location"
+            class="absolute inset-0 w-full h-full border-0"></iframe>
         </div>
-        <div style="text-align:center;margin-top:1rem;">
-          <a href="https://maps.app.goo.gl/mwXL6YZdzvBgpMeXA" class="btn btn-secondary" target="_blank">🗺️ Open in Google Maps</a>
+
+        <!-- Location card -->
+        <div class="rounded-[1.8rem] bg-ink text-cream p-7 sm:p-8 flex flex-col grain overflow-hidden relative">
+          <div class="absolute -bottom-16 -right-10 w-52 h-52 rounded-full bg-gold/15 blur-3xl"></div>
+          <div class="relative">
+            <span class="grid place-items-center w-12 h-12 rounded-2xl bg-gold text-ink"><svg class="ic w-6 h-6"><use href="#i-home"/></svg></span>
+            <h3 class="font-display text-2xl font-semibold mt-5">Westside Coliving</h3>
+            <p class="mt-2 text-[14.5px] text-cream/70 leading-relaxed">
+              Plot No 990 &amp; 991, Ayyappa Society, Madhapur, Hyderabad, Telangana 500081
+            </p>
+            <div class="mt-6 flex flex-col gap-3 text-[14px]">
+              <a href="tel:+919059434949" class="flex items-center gap-3 text-cream/85 hover:text-gold-light transition-colors">
+                <svg class="ic w-5 h-5 text-gold-light shrink-0"><use href="#i-phone"/></svg> 905-943-4949
+              </a>
+              <a href="mailto:westside.coliving@gmail.com" class="flex items-center gap-3 text-cream/85 hover:text-gold-light transition-colors">
+                <svg class="ic w-5 h-5 text-gold-light shrink-0"><use href="#i-mail"/></svg> <span class="break-all">westside.coliving@gmail.com</span>
+              </a>
+              <p class="flex items-center gap-3 text-cream/85">
+                <svg class="ic w-5 h-5 text-gold-light shrink-0"><use href="#i-clock"/></svg> 9 AM – 9 PM, All Days
+              </p>
+            </div>
+          </div>
+          <a href="https://maps.app.goo.gl/mwXL6YZdzvBgpMeXA" target="_blank" rel="noopener noreferrer"
+            class="relative mt-7 sm:mt-auto inline-flex justify-center items-center gap-2 rounded-full bg-gold text-ink px-6 py-3.5 font-semibold hover:bg-gold-light transition-colors">
+            <svg class="ic w-5 h-5"><use href="#i-route"/></svg> Open in Google Maps
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  <footer class="footer">
-    <div class="footer-grid">
-      <div class="footer-brand"><div class="nav-logo" style="margin-bottom:1rem;"><div class="nav-logo-icon">W</div><div class="nav-logo-text"><span>WESTSIDE</span><span>Coliving</span></div></div><p class="footer-tagline">Premium fully furnished AC co-living in Madhapur, Hyderabad near Mindspace & HITEC City.</p><div class="footer-social"><a href="#" class="social-link">📸</a><a href="#" class="social-link">📘</a><a href="https://wa.me/919059434949" class="social-link">💬</a></div></div>
-      <div class="footer-col"><h4>Quick Links</h4><div class="footer-links"><a href="index.html">Home</a><a href="about.html">About Us</a><a href="rooms.html">Rooms & Pricing</a><a href="amenities.html">Amenities</a><a href="food-menu.html">Food Menu</a><a href="gallery.html">Gallery</a><a href="faq.html">FAQs</a><a href="contact.html">Contact</a></div></div>
-      <div class="footer-col"><h4>Policies</h4><div class="footer-links"><a href="terms.html">Terms & Conditions</a><a href="terms.html#lock-in">Lock-in Period</a><a href="terms.html#deposit">Security Deposit</a></div></div>
-      <div class="footer-col"><h4>Contact Us</h4><div class="footer-contact-items"><div class="footer-contact-item"><span class="icon">📍</span><span>Ayyappa Society, Madhapur, Hyderabad – 500081</span></div><div class="footer-contact-item"><span class="icon">📞</span><span><a href="tel:+919059434949">905-943-4949</a></span></div><div class="footer-contact-item"><span class="icon">✉️</span><span><a href="mailto:westside.coliving@gmail.com">westside.coliving@gmail.com</a></span></div></div></div>
-    </div>
-    <div class="footer-bottom"><p>© 2025 Westside Coliving. All rights reserved.</p><p><a href="terms.html">Terms</a> | <a href="contact.html">Contact</a></p></div>
-  </footer>
+  <!-- ========== SHARED FOOTER (markup in js/footer.js) ========== -->
+  <div id="site-footer"></div>
 
-  <a href="https://wa.me/919059434949?text=Hi%2C%20I%27m%20interested%20in%20Westside%20Coliving." class="whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16 0C7.164 0 0 7.164 0 16c0 2.823.737 5.474 2.027 7.773L0 32l8.438-2.012A15.938 15.938 0 0016 32c8.836 0 16-7.164 16-16S24.836 0 16 0zm0 29.25a13.21 13.21 0 01-6.74-1.848l-.484-.288-5.008 1.195 1.232-4.872-.315-.5A13.203 13.203 0 012.75 16C2.75 8.682 8.682 2.75 16 2.75S29.25 8.682 29.25 16 23.318 29.25 16 29.25zm7.234-9.898c-.396-.199-2.344-1.156-2.707-1.289-.363-.132-.626-.198-.89.2-.263.396-1.022 1.289-1.254 1.553-.23.264-.462.297-.858.099-.396-.198-1.672-.616-3.185-1.965-1.177-1.05-1.972-2.348-2.203-2.744-.23-.396-.025-.61.173-.807.178-.177.396-.462.594-.693.198-.231.264-.396.396-.66.132-.264.066-.495-.033-.693-.1-.198-.89-2.145-1.22-2.937-.32-.772-.648-.667-.89-.68l-.758-.013c-.264 0-.693.099-.056 1.056-.319.363-1.22 1.155-1.22 2.815 0 1.66 1.287 3.265 1.468 3.491.18.23 2.53 3.862 6.133 5.42.858.37 1.528.592 2.05.758.861.274 1.645.235 2.265.143.691-.103 2.127-.87 2.429-1.71.3-.84.3-1.56.21-1.71-.089-.15-.33-.23-.726-.43z"/></svg>
+  <!-- ========== WHATSAPP BUTTON ========== -->
+  <a href="https://wa.me/919059434949?text=Hi%2C%20I%27m%20interested%20in%20Westside%20Coliving."
+     target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"
+     class="fixed bottom-6 right-6 z-50 grid place-items-center w-14 h-14 rounded-full bg-[#25D366] text-white shadow-2xl shadow-black/30 hover:scale-110 transition-transform">
+    <svg viewBox="0 0 32 32" class="w-7 h-7" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><use href="#i-whatsapp"/></svg>
   </a>
-  <script src="js/main.js"></script>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script src="js/header.js"></script>
+  <script src="js/footer.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      /* ───────── Scroll reveal ───────── */
+      var reveals = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        reveals.forEach(function (el) { io.observe(el); });
+      } else {
+        reveals.forEach(function (el) { el.classList.add('in'); });
+      }
+
+      /* ───────── Live "enquiry desk" open / closed status ───────── */
+      (function () {
+        var now = new Date();
+        var mins = now.getHours() * 60 + now.getMinutes();
+        var open = mins >= 540 && mins < 1260; /* 9:00 AM – 9:00 PM */
+
+        var dot   = document.getElementById('statusDot');
+        var text  = document.getElementById('statusText');
+        var badge = document.getElementById('hoursBadge');
+
+        if (dot && text) {
+          if (open) {
+            text.textContent = 'Enquiry desk open now';
+          } else {
+            dot.classList.remove('bg-gold', 'pulse-dot');
+            dot.classList.add('bg-ink-muted');
+            text.textContent = 'Closed — leave a message';
+          }
+        }
+        if (badge) {
+          if (open) {
+            badge.textContent = 'Open Now';
+            badge.className = badge.className + ' live-badge bg-green-600 text-white';
+          } else {
+            badge.textContent = 'Closed';
+            badge.className = badge.className + ' bg-ink/10 text-ink-muted';
+          }
+        }
+      })();
+
+      /* ───────── Dynamic WhatsApp message from the form ───────── */
+      (function () {
+        var form  = document.getElementById('contactForm');
+        var waBtn = document.getElementById('waFormBtn');
+        if (!form || !waBtn) return;
+
+        var ROOM = {
+          'single':   'Single / Private Room',
+          'twin':     'Twin Sharing',
+          'triple':   'Triple Sharing',
+          'not-sure': 'Not sure yet'
+        };
+
+        function buildLink() {
+          var name = (form.name.value || '').trim();
+          var room = form.roomType.value;
+          var when = form.moveIn.value;
+
+          var msg = "Hi, I'm interested in booking a room at Westside Coliving, Madhapur.";
+          if (name)        msg += ' My name is ' + name + '.';
+          if (ROOM[room])  msg += ' Room type: ' + ROOM[room] + '.';
+          if (when)        msg += ' Preferred move-in: ' + when + '.';
+
+          waBtn.href = 'https://wa.me/919059434949?text=' + encodeURIComponent(msg);
+        }
+
+        ['input', 'change'].forEach(function (evt) {
+          form.addEventListener(evt, buildLink);
+        });
+        buildLink();
+      })();
+
+      /* ───────── Submit confirmation toast ───────── */
+      (function () {
+        var form  = document.getElementById('contactForm');
+        var toast = document.getElementById('formToast');
+        if (!form || !toast) return;
+
+        form.addEventListener('submit', function () {
+          /* mailto submit is allowed to proceed; show a gentle confirmation */
+          toast.classList.remove('hide');
+          setTimeout(function () { toast.classList.add('hide'); }, 6000);
+        });
+      })();
+
+      /* ───────── Smooth scroll for in-page anchors ───────── */
+      document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+        anchor.addEventListener('click', function (e) {
+          var id = anchor.getAttribute('href');
+          if (id.length < 2) return;
+          var target = document.querySelector(id);
+          if (target) {
+            e.preventDefault();
+            var top = target.getBoundingClientRect().top + window.scrollY - 100;
+            window.scrollTo({ top: top, behavior: 'smooth' });
+          }
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
